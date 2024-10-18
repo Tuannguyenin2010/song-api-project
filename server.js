@@ -5,16 +5,16 @@ const app = express();
 const PORT = 3000;
 
 // Middleware to parse JSON
-app.use(express.json());
+app.use(express.static(path.join(__dirname)));
 
 //Load songs from songs.json
 const songsFile = path.join(__dirname, 'songs.json')
 const songs = JSON.parse(fs.readFileSync(songsFile, 'utf8'));
 
-// Welcome message 
-app.get('/', (req, res) => {
-    res.send('Welcome to the Songs API!');
-});
+// // Welcome message 
+// app.get('/', (req, res) => {
+//     res.send('Welcome to the Songs API!');
+// });
 
 // Get all songs
 app.get('/api/songs', (req, res) => {
