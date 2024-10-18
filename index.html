@@ -54,6 +54,32 @@
       }
     });
 
+    // Fetch a song by ID
+    document.getElementById('getSongById').addEventListener('click', async () => {
+      const songId = prompt('Enter Song ID:');
+      if (!songId) return;  // Cancel if no ID entered
+
+      try {
+        const data = await fetch(`/api/songs/${songId}`).then(handleError);
+        document.getElementById('results').textContent = JSON.stringify(data, null, 2);
+      } catch (error) {
+        document.getElementById('results').textContent = `Error: ${error.message}`;
+      }
+    });
+
+    // Fetch songs by artist
+    document.getElementById('getSongsByArtist').addEventListener('click', async () => {
+      const artistName = prompt('Enter Artist Name:');
+      if (!artistName) return;  // Cancel if no name entered
+
+      try {
+        const data = await fetch(`/api/songs/artist/${artistName}`).then(handleError);
+        document.getElementById('results').textContent = JSON.stringify(data, null, 2);
+      } catch (error) {
+        document.getElementById('results').textContent = `Error: ${error.message}`;
+      }
+    });
+
   </script>
 
 </body>
