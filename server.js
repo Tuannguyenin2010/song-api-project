@@ -21,5 +21,25 @@ app.get('/api/songs', (req, res) => {
     res.json(songs);
 });
 
+// Get song by ID
+app.get('/api/songs/:id', (req, res) => {
+    const song = songs.find((s) => s.songId === parseInt(req.params.id));
+    if (song) {
+      res.json(song);
+    } else {
+      res.status(404).json({ error: 'Song not found' });
+    }
+});
+
+// Get songs by artist name
+  app.get('/api/songs/artist/:name', (req, res) => {
+    const artistSongs = songs.filter((s) => s.artistData.name.toLowerCase() === req.params.name.toLowerCase());
+    if (artistSongs.length) {
+      res.json(artistSongs);
+    } else {
+      res.status(404).json({ error: 'No songs found for this artist' });
+    }
+});
+
 // Start the server
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`)); 
