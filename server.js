@@ -5,6 +5,9 @@ const app = express();
 const PORT = 3000;
 
 // Middleware to parse JSON
+app.use(express.json());
+
+// Show index.html
 app.use(express.static(path.join(__dirname)));
 
 //Load songs from songs.json
