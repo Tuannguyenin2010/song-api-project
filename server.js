@@ -14,7 +14,12 @@ const songs = JSON.parse(fs.readFileSync(songsFile, 'utf8'));
 // Welcome message 
 app.get('/', (req, res) => {
     res.send('Welcome to the Songs API!');
-  });
+});
+
+// Get all songs
+app.get('/api/songs', (req, res) => {
+    res.json(songs);
+});
 
 // Start the server
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`)); 
